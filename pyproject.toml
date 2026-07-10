@@ -48,6 +48,9 @@ Course = "https://comphy-lab.org/comphy-python101/"
 Repository = "https://github.com/comphy-lab/comphy-python101"
 Issues = "https://github.com/comphy-lab/comphy-python101/issues"
 
+[tool.uv]
+required-version = "==0.10.12"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/comphy_python101"]
 
