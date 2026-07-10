@@ -17,7 +17,8 @@ precise, but memorising notation is not the same as knowing what to do.
 The course assumes:
 
 - comfort with algebra, graphs, and physical units;
-- no prior programming;
+- no prior programming after completing the
+  [Python preflight](python-preflight.md), or equivalent familiarity;
 - willingness to predict an answer before seeing a plot.
 
 It also works as a reset for students who can already make notebooks run but
@@ -59,8 +60,9 @@ Allow 6–8 focused hours. Do these in order:
 2. [Functions are scientific claims](../core/02-functions.md)
 3. [Arrays are the working language](../core/03-arrays.md)
 4. [Debugging and tests](../core/05-debugging.md)
-5. [Analysis becomes a tool](../core/09-tools.md)
-6. [Read a Basilisk log](../comphy/11-basilisk-log.md)
+5. [Data has a schema](../core/06-data.md)
+6. [Analysis becomes a tool](../core/09-tools.md)
+7. [Read a Basilisk log](../comphy/11-basilisk-log.md)
 
 Then inspect the [reproduction capsule](../comphy/13-capstone.md). If any part
 feels like magic, return to the linked full-route lesson.
@@ -74,7 +76,9 @@ Allow 20–24 hours including exercises.
 | Model | 01–04 | make state and logic explicit |
 | Interrogate | 05–07 | fail loudly, preserve schemas, argue with plots |
 | Trust | 08–10 | verify numerics and leave a reproducible trail |
-| Practise | 11–13 | turn CoMPhy-style output into public evidence |
+| Practise | 11–12 | turn CoMPhy-style output into validated evidence |
+| Integrate | Labs 12–13 | join reductions, figures, commands, and checksums |
+| Publish | Capstone 13 | build one-command public science |
 
 Do not binge-read the text. A useful cadence is 20–30 minutes of reading,
 45–75 minutes of exercise, and 10 minutes explaining your result to another

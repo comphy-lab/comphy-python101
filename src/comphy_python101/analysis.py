@@ -1,4 +1,4 @@
-"""Numerical reductions whose assumptions are deliberately visible."""
+"""Numerical reductions with explicit assumptions."""
 
 from typing import Any
 
@@ -8,21 +8,29 @@ from numpy.typing import ArrayLike, NDArray
 from .io import SimulationLog
 
 
-def _one_dimensional(name: str, values: ArrayLike) -> NDArray[np.float64]:
+def _one_dimensional(
+    name: str,
+    values: ArrayLike,
+) -> NDArray[np.float64]:
     array = np.asarray(values, dtype=float)
     if array.ndim != 1:
         raise ValueError(f"{name} must be one-dimensional")
     if not np.all(np.isfinite(array)):
-        raise ValueError(f"{name} must contain only finite values")
+        raise ValueError(
+            f"{name} must contain only finite values",
+        )
     return array
 
 
-def central_difference(x: ArrayLike, y: ArrayLike) -> NDArray[np.float64]:
+def central_difference(
+    x: ArrayLike,
+    y: ArrayLike,
+) -> NDArray[np.float64]:
     """Differentiate sampled data on a uniformly spaced grid.
 
-    Interior points use a centred difference. The two endpoints use a
-    second-order one-sided difference. Refusing a non-uniform grid keeps the
-    numerical assumption explicit.
+    Interior points use a centred difference. The endpoints use a
+    second-order one-sided difference. A non-uniform grid is
+    refused so the numerical assumption remains explicit.
     """
 
     coordinate = _one_dimensional("x", x)
@@ -35,14 +43,27 @@ def central_difference(x: ArrayLike, y: ArrayLike) -> NDArray[np.float64]:
     spacing = np.diff(coordinate)
     if np.any(spacing <= 0):
         raise ValueError("x must be strictly increasing")
-    if not np.allclose(spacing, spacing[0], rtol=1e-10, atol=1e-14):
-        raise ValueError("central_difference requires a uniform grid")
+    if not np.allclose(
+        spacing,
+        spacing[0],
+        rtol=1e-10,
+        atol=1e-14,
+    ):
+        raise ValueError(
+            "central_difference requires a uniform grid",
+        )
 
     step = spacing[0]
     derivative = np.empty_like(values)
     derivative[1:-1] = (values[2:] - values[:-2]) / (2 * step)
-    derivative[0] = (-3 * values[0] + 4 * values[1] - values[2]) / (2 * step)
-    derivative[-1] = (3 * values[-1] - 4 * values[-2] + values[-3]) / (2 * step)
+    left_numerator = -3 * values[0]
+    left_numerator += 4 * values[1]
+    left_numerator -= values[2]
+    right_numerator = 3 * values[-1]
+    right_numerator -= 4 * values[-2]
+    right_numerator += values[-3]
+    derivative[0] = left_numerator / (2 * step)
+    derivative[-1] = right_numerator / (2 * step)
     return derivative
 
 

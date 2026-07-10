@@ -102,6 +102,7 @@ def load_regime_map(path: str | Path) -> list[RegimeCase]:
 
     allowed = {"no-jet", "one-drop", "multiple-drops"}
     cases: list[RegimeCase] = []
+    case_ids: set[str] = set()
     for line_number, row in enumerate(rows, start=2):
         try:
             ohnesorge_number = float(row["ohnesorge"])
@@ -110,7 +111,16 @@ def load_regime_map(path: str | Path) -> list[RegimeCase]:
             raise ValueError(
                 f"{source}:{line_number}: dimensionless values must be numeric",
             ) from error
+        case_id = row["case_id"].strip()
         outcome = row["outcome"].strip()
+        if not case_id:
+            raise ValueError(f"{source}:{line_number}: case_id cannot be empty")
+        if case_id in case_ids:
+            raise ValueError(f"{source}:{line_number}: duplicate case ID {case_id!r}")
+        if not np.isfinite(ohnesorge_number) or not np.isfinite(bond_number):
+            raise ValueError(
+                f"{source}:{line_number}: Oh and Bo must be finite",
+            )
         if ohnesorge_number <= 0 or bond_number <= 0:
             raise ValueError(
                 f"{source}:{line_number}: Oh and Bo must be strictly positive",
@@ -121,10 +131,11 @@ def load_regime_map(path: str | Path) -> list[RegimeCase]:
             )
         cases.append(
             RegimeCase(
-                case_id=row["case_id"].strip(),
+                case_id=case_id,
                 ohnesorge=ohnesorge_number,
                 bond=bond_number,
                 outcome=outcome,
             ),
         )
+        case_ids.add(case_id)
     return cases

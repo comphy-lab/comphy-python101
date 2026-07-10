@@ -133,7 +133,9 @@ processing, not login-node work.
 
 ## Verify
 
-Run:
+Complete
+[Exercise 09](https://github.com/comphy-lab/comphy-python101/tree/main/exercises/09-cli),
+then run:
 
 ```bash
 uv run comphy-python101 summary data/basilisk_log.csv

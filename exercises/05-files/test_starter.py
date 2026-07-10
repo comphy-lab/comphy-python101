@@ -21,3 +21,11 @@ def test_missing_column_fails(tmp_path: Path) -> None:
     path.write_text("t,dt\n0,0.1\n", encoding="utf-8")
     with pytest.raises(ValueError, match="missing"):
         summarise_log(path)
+
+
+@pytest.mark.parametrize("contents", ["", "t,dt,kinetic_energy,h_min\n"])
+def test_empty_input_fails(tmp_path: Path, contents: str) -> None:
+    path = tmp_path / "empty.csv"
+    path.write_text(contents, encoding="utf-8")
+    with pytest.raises(ValueError, match="empty|header|data"):
+        summarise_log(path)

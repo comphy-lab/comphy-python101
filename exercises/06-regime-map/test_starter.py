@@ -8,8 +8,8 @@ ROOT = Path(__file__).parents[2]
 
 def test_counts() -> None:
     assert count_outcomes(ROOT / "data" / "regime_map.csv") == {
-        "no-jet": 8,
-        "one-drop": 8,
+        "no-jet": 7,
+        "one-drop": 9,
         "multiple-drops": 4,
     }
 
@@ -21,4 +21,14 @@ def test_unknown_outcome_fails(tmp_path: Path) -> None:
         encoding="utf-8",
     )
     with pytest.raises(ValueError, match="unknown"):
+        count_outcomes(path)
+
+
+def test_duplicate_case_id_fails(tmp_path: Path) -> None:
+    path = tmp_path / "duplicate.csv"
+    path.write_text(
+        "case_id,ohnesorge,bond,outcome\nc1,0.1,0.1,no-jet\nc1,0.2,0.2,one-drop\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="duplicate"):
         count_outcomes(path)

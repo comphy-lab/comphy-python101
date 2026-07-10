@@ -44,6 +44,7 @@ nav:
   - Start here:
       - Course overview: start/overview.md
       - Set up once: start/setup.md
+      - Python preflight: start/python-preflight.md
       - How to learn here: start/how-to-learn.md
   - Core:
       - "01 · Think like a program": core/01-thinking.md
@@ -59,6 +60,11 @@ nav:
   - CoMPhy labs:
       - "11 · Read a Basilisk log": comphy/11-basilisk-log.md
       - "12 · Build a regime map": comphy/12-regime-map.md
+  - Practice:
+      - Practice map: practice/index.md
+      - "Lab 12 · Log to evidence": practice/12-log-to-evidence.md
+      - "Lab 13 · Evidence to capsule": practice/13-evidence-to-capsule.md
+  - Capstone:
       - "13 · Reproduction capsule": comphy/13-capstone.md
   - Reference:
       - Syntax map: reference/syntax-map.md
@@ -74,6 +80,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/mathjax.js
+  - javascripts/site.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:

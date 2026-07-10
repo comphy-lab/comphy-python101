@@ -57,8 +57,8 @@ The reader rejects:
 - missing columns;
 - an empty table.
 
-Extend it to reject duplicate case IDs. A duplicated row can change category
-counts and visual weight without creating a plotting error.
+It also rejects duplicate case IDs. A duplicated row can change category counts
+and visual weight without creating a plotting error.
 
 ## Reduce categorical evidence
 
@@ -68,8 +68,8 @@ The expected counts are:
 
 ```text
 multiple drops: 4
-one drop:        8
-no jet:          8
+one drop:        9
+no jet:          7
 ```
 
 Keep the count as a separate output, not text manually typed into a caption.
@@ -90,6 +90,11 @@ The reference figure uses:
 
 Check the source table when points overlap. A rendered figure is a projection,
 not the canonical case inventory.
+
+<figure class="scientific-figure">
+  <img src="../../assets/figures/regime-map.png" alt="Logarithmic regime map of synthetic cases, with three outcomes encoded by distinct colours and marker shapes.">
+  <figcaption>The points preserve the supplied case classifications. Empty space is not silently converted into a smooth phase boundary.</figcaption>
+</figure>
 
 ## Boundary temptation
 
@@ -112,7 +117,7 @@ Until then, show the samples.
 
 ## Verify
 
-Add tests for:
+The reference checks cover:
 
 1. duplicate case IDs;
 2. an unknown category;

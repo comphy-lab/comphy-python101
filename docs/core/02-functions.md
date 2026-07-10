@@ -130,14 +130,19 @@ Useful test families are:
 ## A family of claims
 
 The course reference package implements \(Re\), \(We\), \(Oh\), and
-\(t_\sigma\) with one validation pattern:
+\(t_\sigma\) with two deliberately different validation policies:
 
 ```python
 --8<-- "src/comphy_python101/dimensionless.py"
 ```
 
-Read it for structure, not for cleverness. Notice that array support is a
-consequence of NumPy operations, while scalar input still returns a scalar.
+Read it for structure, not for cleverness. Density, length, surface tension,
+and denominator viscosity must remain strictly positive. Speed in \(Re\) and
+\(We\), and numerator viscosity in \(Oh\), may be zero: those are valid
+zero-speed and inviscid limits. Negative or non-finite values still fail.
+
+Notice that array support is a consequence of NumPy operations, while scalar
+input still returns a scalar.
 
 ## Verify
 

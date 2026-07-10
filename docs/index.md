@@ -16,14 +16,10 @@ hide:
   </p>
   <div class="loop" role="group" aria-label="The course reasoning loop">
     <span class="loop-stage loop-stage--question">question</span>
-    <span class="loop-arrow" aria-hidden="true">→</span>
-    <span class="loop-stage loop-stage--represent">represent</span>
-    <span class="loop-arrow" aria-hidden="true">→</span>
-    <span class="loop-stage loop-stage--transform">transform</span>
-    <span class="loop-arrow" aria-hidden="true">→</span>
-    <span class="loop-stage loop-stage--verify">verify</span>
-    <span class="loop-arrow" aria-hidden="true">→</span>
-    <span class="loop-stage loop-stage--evidence">evidence</span>
+    <span class="loop-transition"><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-stage loop-stage--represent">represent</span></span>
+    <span class="loop-transition"><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-stage loop-stage--transform">transform</span></span>
+    <span class="loop-transition"><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-stage loop-stage--verify">verify</span></span>
+    <span class="loop-transition"><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-stage loop-stage--evidence">evidence</span></span>
   </div>
   <div class="course-actions">
     <a class="course-button course-button--primary" href="start/overview/">Choose a route</a>
@@ -36,7 +32,7 @@ hide:
     <p class="course-eyebrow">One source, two speeds</p>
     <h2 id="routes-title">Choose depth, not a different course.</h2>
     <p>
-      The quick route selects six lessons from the full route. There is no
+      The quick route selects seven lessons from the full route. There is no
       second nano repository to drift out of date.
     </p>
   </div>
@@ -48,14 +44,14 @@ hide:
         For students who have already written some Python and need the CoMPhy
         habits: functions, arrays, debugging, schemas, tools, and the log lab.
       </p>
-      <a href="start/overview/#quick-route">See the six lessons →</a>
+      <a href="start/overview/#quick-route">See the seven lessons →</a>
     </article>
     <article class="course-route">
       <span class="course-route__time">20–24 hours</span>
       <h3>Full route</h3>
       <p>
-        For a first serious encounter with Python, including control flow,
-        plotting, numerical verification, collaboration, and the capstone.
+        For a first serious encounter with Python. Start with the short preflight,
+        then add control flow, plotting, verification, collaboration, and the capstone.
       </p>
       <a href="start/overview/#full-route">See the complete route →</a>
     </article>

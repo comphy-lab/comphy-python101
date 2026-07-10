@@ -1,26 +1,35 @@
-.PHONY: setup check test lint format docs serve clean
+.PHONY: setup check test lint format docs serve reproduce clean
+
+UV ?= uv
 
 setup:
-	uv sync --all-extras
+	$(UV) sync --all-extras
 
 lint:
-	uv run ruff check .
-	uv run ruff format --check .
+	$(UV) run ruff check .
+	$(UV) run ruff format --check .
 
 format:
-	uv run ruff check --fix .
-	uv run ruff format .
+	$(UV) run ruff check --fix .
+	$(UV) run ruff format .
 
 test:
-	uv run pytest
+	$(UV) run pytest
 
 docs:
-	uv run mkdocs build --strict
+	$(UV) run mkdocs build --strict
 
 serve:
-	uv run mkdocs serve
+	$(UV) run mkdocs serve
 
 check: lint test docs
+
+reproduce:
+	$(UV) sync --locked --all-extras
+	$(UV) run pytest
+	rm -rf build/capsule
+	$(UV) run python examples/reproduce_capsule.py --output build/capsule
+	$(UV) run python examples/reproduce_capsule.py --output build/capsule --verify-only
 
 clean:
 	rm -rf site .pytest_cache .ruff_cache .coverage htmlcov

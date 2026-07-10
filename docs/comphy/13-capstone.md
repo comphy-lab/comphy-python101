@@ -89,14 +89,26 @@ It should:
 6. update or verify checksums;
 7. return non-zero if anything fails.
 
-The course's miniature example is:
+The course's miniature example fulfils the same contract:
 
 ```bash
-uv run python examples/reproduce_capsule.py --output build/capsule
+make reproduce
 ```
 
-Read that script. It is intentionally ordinary. A clear sequence of checked
-steps is better than an orchestration framework students cannot explain.
+It verifies the locked environment, runs the tests, rebuilds copied inputs,
+reduced JSON, and both figures, writes relative SHA-256 entries, verifies every
+digest, and fails visibly if any step fails. Read the `Makefile` and
+`examples/reproduce_capsule.py`; the sequence is intentionally ordinary.
+
+<figure class="scientific-figure">
+  <img src="../../assets/figures/basilisk-log.png" alt="The capsule's two-panel time-series evidence: kinetic energy plateaus while minimum length shrinks.">
+  <figcaption>One capsule output: validated time-series evidence rebuilt from the copied synthetic input.</figcaption>
+</figure>
+
+<figure class="scientific-figure">
+  <img src="../../assets/figures/regime-map.png" alt="The capsule's categorical regime-map evidence across Ohnesorge and Bond numbers.">
+  <figcaption>A second output from the same declared build: categorical evidence with source rows retained in the capsule.</figcaption>
+</figure>
 
 ## HPC extension
 

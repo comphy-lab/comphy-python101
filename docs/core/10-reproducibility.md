@@ -41,14 +41,16 @@ environment that passed.
 
 ## Make one front door
 
-This repository uses:
+This repository uses two front doors:
 
 ```bash
 make check
+make reproduce
 ```
 
-which expands to lint, tests, and a strict site build. A paper capsule might
-use:
+`make check` expands to lint, tests, and a strict site build. `make reproduce`
+verifies the locked environment, runs tests, rebuilds the teaching capsule, and
+verifies its checksum manifest. A paper capsule might use:
 
 ```bash
 make figure-3
@@ -149,18 +151,19 @@ the endpoint this course aims towards, scaled down enough for a student to own.
 
 ## Verify
 
-Run the course capsule from a clean output directory:
+Complete
+[Exercise 10](https://github.com/comphy-lab/comphy-python101/tree/main/exercises/10-reproducibility),
+then run the course capsule from a clean output directory:
 
 ```bash
-rm -rf build/capsule
-uv run python examples/reproduce_capsule.py --output build/capsule
+make reproduce
 ```
 
 Then:
 
 1. inspect `summary.json`;
 2. open both figures;
-3. verify `manifest.sha256`;
+3. inspect the successful `manifest.sha256` verification;
 4. change one input byte and confirm the checksum changes;
 5. restore the file with Git.
 

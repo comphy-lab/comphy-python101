@@ -38,6 +38,11 @@ observed_order = np.log(error_coarse / error_fine) / np.log(2)
 An observed order near two is evidence about the implementation. It is not a
 proof that the model is physically appropriate.
 
+<figure class="scientific-figure">
+  <img src="../../assets/figures/central-difference-convergence.png" alt="Log–log plot of maximum derivative error against grid spacing; measured error follows a second-order reference slope.">
+  <figcaption>The independent analytic derivative of \(\sin x\) exposes the expected second-order error law before roundoff dominates.</figcaption>
+</figure>
+
 ## Use independent checks
 
 ### Analytic solution or limit
@@ -116,7 +121,8 @@ windows, checksums, a locked Python environment, and an offline rebuild.
 
 ## Verify
 
-Extend [Exercise 03](https://github.com/comphy-lab/comphy-python101/tree/main/exercises/03-arrays):
+Complete
+[Exercise 08](https://github.com/comphy-lab/comphy-python101/tree/main/exercises/08-numerics):
 
 1. differentiate \(\sin x\) on 20, 40, 80, and 160 points;
 2. compute the maximum error;
@@ -124,7 +130,8 @@ Extend [Exercise 03](https://github.com/comphy-lab/comphy-python101/tree/main/ex
 4. plot error against spacing on log–log axes;
 5. explain where boundary and roundoff errors enter.
 
-Then deliberately use a first-order one-sided rule at both boundaries. Which
+Then compare it with Exercise 03 and deliberately use a first-order one-sided
+rule at both boundaries. Which
 error norm reveals the boundary damage most clearly?
 
 ## Reflect

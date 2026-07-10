@@ -53,8 +53,10 @@ cd comphy-python101
 uv sync --all-extras
 
 # Check the reference implementation and build the site
-uv run pytest
-uv run mkdocs build --strict
+make check
+
+# Rebuild and verify the complete teaching capsule
+make reproduce
 ```
 
 No `uv` yet? Install it from the

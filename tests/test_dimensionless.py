@@ -29,6 +29,25 @@ def test_array_inputs_broadcast() -> None:
     assert np.all(np.diff(values) > 0)
 
 
+def test_zero_numerator_limits_are_valid() -> None:
+    assert reynolds(1000.0, 0.0, 0.001, 0.001) == 0.0
+    assert weber(1000.0, 0.0, 0.001, 0.072) == 0.0
+    assert ohnesorge(0.0, 1000.0, 0.072, 0.001) == 0.0
+
+
+@pytest.mark.parametrize(
+    ("function", "arguments"),
+    [
+        (reynolds, (1000.0, -1.0, 0.001, 0.001)),
+        (weber, (1000.0, -1.0, 0.001, 0.072)),
+        (ohnesorge, (-0.001, 1000.0, 0.072, 0.001)),
+    ],
+)
+def test_negative_numerators_fail(function, arguments: tuple[float, ...]) -> None:
+    with pytest.raises(ValueError):
+        function(*arguments)
+
+
 @pytest.mark.parametrize("invalid", [0.0, -1.0, np.nan, np.inf])
 def test_nonphysical_inputs_fail_loudly(invalid: float) -> None:
     with pytest.raises(ValueError):

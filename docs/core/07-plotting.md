@@ -119,6 +119,16 @@ The course reference functions are intentionally modest:
 --8<-- "src/comphy_python101/plotting.py"
 ```
 
+<figure class="scientific-figure">
+  <img src="../../assets/figures/basilisk-log.png" alt="Two aligned logarithmic panels show kinetic energy rising to a plateau while minimum length decreases with time.">
+  <figcaption>The shared time axis supports the comparison; separate panels avoid a misleading dual-axis overlay. Synthetic teaching data.</figcaption>
+</figure>
+
+<figure class="scientific-figure">
+  <img src="../../assets/figures/regime-map.png" alt="A logarithmic Ohnesorge–Bond regime map distinguishes no jet, one drop, and multiple drops using colour and marker shape.">
+  <figcaption>Colour and marker shape carry the categories together; no interpolated boundary is invented between sparse cases.</figcaption>
+</figure>
+
 ## A figure is not the data
 
 Ship the reduced table used to draw it. A reader should be able to:
@@ -135,7 +145,9 @@ outputs explicit.
 
 ## Verify
 
-Run:
+Complete
+[Exercise 07](https://github.com/comphy-lab/comphy-python101/tree/main/exercises/07-plotting),
+then run the two reference commands:
 
 ```bash
 uv run comphy-python101 plot-log data/basilisk_log.csv \

@@ -17,6 +17,15 @@ def _positive(name: str, value: ArrayLike) -> NDArray[np.float64]:
     return array
 
 
+def _nonnegative(name: str, value: ArrayLike) -> NDArray[np.float64]:
+    array = np.asarray(value, dtype=float)
+    if not np.all(np.isfinite(array)):
+        raise ValueError(f"{name} must contain only finite values")
+    if np.any(array < 0):
+        raise ValueError(f"{name} cannot be negative")
+    return array
+
+
 def _scalar_or_array(
     operation: Callable[[], NDArray[np.float64] | np.float64],
 ) -> ScalarOrArray:
@@ -46,7 +55,7 @@ def reynolds(
     r"""Return :math:`Re = \rho U L / \mu`."""
 
     rho = _positive("density", density)
-    velocity = _positive("speed", speed)
+    velocity = _nonnegative("speed", speed)
     scale = _positive("length", length)
     viscosity = _positive("dynamic_viscosity", dynamic_viscosity)
     return _scalar_or_array(lambda: rho * velocity * scale / viscosity)
@@ -61,7 +70,7 @@ def weber(
     r"""Return :math:`We = \rho U^2 L / \sigma`."""
 
     rho = _positive("density", density)
-    velocity = _positive("speed", speed)
+    velocity = _nonnegative("speed", speed)
     scale = _positive("length", length)
     sigma = _positive("surface_tension", surface_tension)
     return _scalar_or_array(lambda: rho * velocity**2 * scale / sigma)
@@ -75,7 +84,7 @@ def ohnesorge(
 ) -> ScalarOrArray:
     r"""Return :math:`Oh = \mu/\sqrt{\rho\sigma L}`."""
 
-    viscosity = _positive("dynamic_viscosity", dynamic_viscosity)
+    viscosity = _nonnegative("dynamic_viscosity", dynamic_viscosity)
     rho = _positive("density", density)
     sigma = _positive("surface_tension", surface_tension)
     scale = _positive("length", length)

@@ -109,15 +109,22 @@ Inspect:
 - is the shared time axis clear?
 - would normalising time by \(t_\sigma\) improve comparison across cases?
 
+<figure class="scientific-figure">
+  <img src="../../assets/figures/basilisk-log.png" alt="Two logarithmic time-series panels show kinetic energy approaching a plateau and minimum length continuing to shrink.">
+  <figcaption>The rendered exemplar is generated from <code>data/basilisk_log.csv</code>; the trend supports a numerical statement, while its physical interpretation remains model-dependent.</figcaption>
+</figure>
+
 ## Verify
 
-Run the targeted tests:
+Complete
+[Exercise 11](https://github.com/comphy-lab/comphy-python101/tree/main/exercises/11-basilisk-log),
+then run the targeted reference tests:
 
 ```bash
 uv run pytest tests/test_io.py tests/test_plotting.py -q
 ```
 
-Then add one test:
+Inspect the regression test that establishes:
 
 > a log with negative kinetic energy must fail and name the violated column.
 

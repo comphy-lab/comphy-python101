@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+from matplotlib.axes import Axes
 
 from .io import RegimeCase, SimulationLog
 
@@ -45,19 +46,17 @@ def plot_log(log: SimulationLog, output: str | Path) -> Path:
     return destination
 
 
-def plot_regime_map(cases: list[RegimeCase], output: str | Path) -> Path:
-    """Save a labelled Oh–Bo regime map."""
+def _draw_regime_map(cases: list[RegimeCase], axis: Axes) -> None:
+    """Draw validated categorical cases on an existing axis."""
 
     if not cases:
         raise ValueError("at least one case is required")
-    destination = _output_path(output)
     styles = {
         "no-jet": ("x", BLUE),
         "one-drop": ("o", GOLD),
         "multiple-drops": ("^", CORAL),
     }
 
-    figure, axis = plt.subplots(figsize=(6.4, 4.8))
     for outcome, (marker, colour) in styles.items():
         selected = [case for case in cases if case.outcome == outcome]
         if not selected:
@@ -79,6 +78,14 @@ def plot_regime_map(cases: list[RegimeCase], output: str | Path) -> Path:
     axis.spines[["top", "right"]].set_visible(False)
     axis.grid(which="both", alpha=0.18, linewidth=0.6)
     axis.legend(frameon=False, title="observed outcome")
+
+
+def plot_regime_map(cases: list[RegimeCase], output: str | Path) -> Path:
+    """Save a labelled Oh–Bo regime map."""
+
+    destination = _output_path(output)
+    figure, axis = plt.subplots(figsize=(6.4, 4.8))
+    _draw_regime_map(cases, axis)
     figure.tight_layout()
     figure.savefig(destination, dpi=180, bbox_inches="tight")
     plt.close(figure)

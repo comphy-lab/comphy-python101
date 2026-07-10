@@ -70,6 +70,13 @@ uv run python examples/reproduce_capsule.py --output build/capsule
 The shell is not outside programming. Paths, arguments, exit status, and working
 directory are part of the computation.
 
+The full capsule front door adds environment, tests, a clean rebuild, and
+checksum verification around that explicit program:
+
+```bash
+make reproduce
+```
+
 ## Your editor
 
 Use any editor that can:

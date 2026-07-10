@@ -3,6 +3,9 @@
 This course is designed for guided self-study, a one-day quick route, or a
 multi-session onboarding course.
 
+Learners with no programming experience should complete the
+[Python preflight](../start/python-preflight.md) before the first session.
+
 ## Recommended formats
 
 ### One-day quick route
@@ -13,7 +16,7 @@ multi-session onboarding course.
 | 10:00 | functions and Exercise 02 |
 | 11:30 | arrays and Exercise 03 |
 | 13:30 | debugging and Exercise 04 |
-| 15:00 | tools and Basilisk-log lab |
+| 15:00 | schemas, tools, and Basilisk-log lab |
 | 16:30 | explain one result and review |
 
 Aim for roughly 20% exposition and 80% tracing, coding, checking, and
