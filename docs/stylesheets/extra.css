@@ -1,443 +1,500 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&display=swap");
+/* =============================================================
+   CoMPhy Lab · Course theme for MkDocs Material
+   Drop-in: copy to docs/stylesheets/extra.css in any course repo.
 
-:root {
-  --course-paper: #f5f1e8;
-  --course-paper-deep: #e9e2d4;
-  --course-ink: #13201f;
-  --course-muted: #5d6966;
-  --course-teal: #0b5d5b;
-  --course-blue: #2f6f9f;
-  --course-coral: #e45d3f;
-  --course-gold: #c3912c;
-  --course-line: #c7c1b5;
-  --course-serif: "Fraunces", Georgia, serif;
-  --course-radius: 0.45rem;
-  --course-shadow: 0 18px 45px rgb(19 32 31 / 10%);
-}
+   Pairs with mkdocs.yml:
+     theme:
+       font: { text: IBM Plex Sans, code: IBM Plex Mono }
+       palette:
+         - scheme: comphy-light
+         - scheme: comphy-dark
 
+   Palette follows blogs.comphy-lab.org: color-coded heading
+   hierarchy (purple H1 / amber H2 / teal H3 / blue links) on warm
+   paper (light) or deep navy (dark).
+
+   Per-course accent: change the three --course-accent* values
+   below. python101 → #2f6f9f (capillary blue);
+   Basilisk-101 → #3e7d46 (basilisk green); default → #254c4a teal.
+   ============================================================= */
+
+/* ---------- Light scheme ---------- */
 [data-md-color-scheme="comphy-light"] {
-  --md-primary-fg-color: var(--course-teal);
-  --md-primary-fg-color--light: #167a77;
-  --md-primary-fg-color--dark: #073d3c;
-  --md-accent-fg-color: var(--course-coral);
+  --course-h1:   #68236d;
+  --course-h2:   #b03e00;
+  --course-h3:   #1d6f68;
+  --course-link: #0b5cad;
+
+  --course-accent:       #2f6f9f;   /* ← per-course hue */
+  --course-accent-fg:    #ffffff;
+  --course-accent-hover: #255a83;
+  --course-accent-soft:  rgba(47, 111, 159, 0.10);
+
+  --course-paper:   #f7f4ee;
+  --course-surface: #fffdf9;
+  --course-code-bg: #ede8de;
+  --course-border:        rgba(15, 12, 8, 0.09);
+  --course-border-strong: rgba(15, 12, 8, 0.18);
+  --course-ink:       #1f1a15;
+  --course-ink-strong: #0f0c08;
+  --course-ink-muted: #625648;
+
+  /* Map onto Material's variables */
   --md-default-bg-color: var(--course-paper);
   --md-default-fg-color: var(--course-ink);
-  --md-default-fg-color--light: var(--course-muted);
-  --md-default-fg-color--lighter: rgb(93 105 102 / 52%);
-  --md-default-fg-color--lightest: rgb(93 105 102 / 18%);
-  --md-code-bg-color: #eae5da;
-  --md-code-fg-color: #172927;
-  --md-typeset-a-color: #126b68;
+  --md-default-fg-color--light: var(--course-ink-muted);
+  --md-default-fg-color--lighter: #857867;
+  --md-primary-fg-color: var(--course-accent);
+  --md-accent-fg-color: var(--course-accent-hover);
   --md-typeset-color: var(--course-ink);
+  --md-typeset-a-color: var(--course-link);
+  --md-code-bg-color: var(--course-code-bg);
+  --md-code-fg-color: var(--course-ink);
+
+  /* Syntax (pymdownx.highlight / pygments) */
+  --md-code-hl-keyword-color: #68236d;
+  --md-code-hl-string-color:  #1d6f68;
+  --md-code-hl-number-color:  #b03e00;
+  --md-code-hl-function-color: #0b5cad;
+  --md-code-hl-comment-color: #857867;
+  --md-code-hl-name-color:    var(--course-ink);
+  --md-code-hl-operator-color: var(--course-ink-muted);
+  --md-code-hl-punctuation-color: var(--course-ink-muted);
+  --md-code-hl-color: rgba(47, 111, 159, 0.12);
 }
 
+/* ---------- Dark scheme: deep navy, blog shades ---------- */
 [data-md-color-scheme="comphy-dark"] {
-  --course-paper: #111b1a;
-  --course-paper-deep: #182524;
-  --course-ink: #f2eee4;
-  --course-muted: #aebbb7;
-  --course-line: #344542;
-  --course-shadow: 0 20px 55px rgb(0 0 0 / 28%);
-  --md-primary-fg-color: #0b5351;
-  --md-primary-fg-color--light: #16817c;
-  --md-primary-fg-color--dark: #072e2d;
-  --md-accent-fg-color: #ff8066;
+  --course-h1:   #a988e2;
+  --course-h2:   #e5954a;
+  --course-h3:   #56b6ae;
+  --course-link: #7fb0f2;
+
+  --course-accent:       #6ba3cd;   /* ← per-course hue (dark variant) */
+  --course-accent-fg:    #101a24;
+  --course-accent-hover: #8ebcdf;
+  --course-accent-soft:  rgba(107, 163, 205, 0.14);
+
+  --course-paper:   #202839;
+  --course-surface: #273044;
+  --course-code-bg: #171d2c;
+  --course-border:        rgba(216, 222, 238, 0.09);
+  --course-border-strong: rgba(216, 222, 238, 0.18);
+  --course-ink:       #d5dae8;
+  --course-ink-strong: #eef1f8;
+  --course-ink-muted: #99a2b8;
+
   --md-default-bg-color: var(--course-paper);
   --md-default-fg-color: var(--course-ink);
-  --md-default-fg-color--light: var(--course-muted);
-  --md-default-fg-color--lighter: rgb(174 187 183 / 52%);
-  --md-default-fg-color--lightest: rgb(174 187 183 / 18%);
-  --md-code-bg-color: #182624;
-  --md-code-fg-color: #eef4f0;
-  --md-typeset-a-color: #65bcb7;
+  --md-default-fg-color--light: var(--course-ink-muted);
+  --md-default-fg-color--lighter: #6d7690;
+  --md-primary-fg-color: var(--course-accent);
+  --md-accent-fg-color: var(--course-accent-hover);
   --md-typeset-color: var(--course-ink);
+  --md-typeset-a-color: var(--course-link);
+  --md-code-bg-color: var(--course-code-bg);
+  --md-code-fg-color: var(--course-ink);
+
+  --md-code-hl-keyword-color: #c39ee8;
+  --md-code-hl-string-color:  #6fc7bf;
+  --md-code-hl-number-color:  #e5954a;
+  --md-code-hl-function-color: #7fb0f2;
+  --md-code-hl-comment-color: #77809a;
+  --md-code-hl-name-color:    var(--course-ink);
+  --md-code-hl-operator-color: var(--course-ink-muted);
+  --md-code-hl-punctuation-color: var(--course-ink-muted);
+  --md-code-hl-color: rgba(107, 163, 205, 0.16);
 }
 
-.md-header {
+/* =============================================================
+   Typography — the blog's color-coded hierarchy
+   ============================================================= */
+.md-typeset h1 { color: var(--course-h1); font-weight: 600; letter-spacing: -0.015em; }
+.md-typeset h2 { color: var(--course-h2); font-weight: 600; letter-spacing: -0.01em;
+                 padding-bottom: 0.3em; border-bottom: 1px solid var(--course-border); }
+.md-typeset h3 { color: var(--course-h3); font-weight: 600; }
+.md-typeset h4 { color: var(--course-ink-strong); }
+
+.md-typeset { font-size: 0.82rem; line-height: 1.7; }
+.md-typeset a { color: var(--course-link); }
+.md-typeset a:hover { color: var(--course-accent-hover); }
+.md-typeset strong { color: var(--course-h2); font-weight: 600; }
+
+/* Header / hero chrome */
+.md-header { background: var(--course-paper); color: var(--course-ink-strong);
+             border-bottom: 1px solid var(--course-border); box-shadow: none; }
+.md-header__title, .md-header__topic { color: var(--course-ink-strong); }
+.md-tabs { background: var(--course-paper); color: var(--course-ink);
+           border-bottom: 1px solid var(--course-border); }
+.md-tabs__link { color: var(--course-ink-muted); }
+.md-tabs__link--active, .md-tabs__link:hover { color: var(--course-accent); }
+.md-search__form { background: var(--course-surface); border: 1px solid var(--course-border); }
+.md-search__input { color: var(--course-ink); }
+.md-search__input::placeholder { color: var(--course-ink-muted); }
+.md-footer { background: var(--course-code-bg); color: var(--course-ink); }
+.md-footer-meta { background: transparent; }
+
+/* Sidebar nav */
+.md-nav__link--active, .md-nav__link:hover { color: var(--course-accent); }
+.md-nav__item--active > .md-nav__link { color: var(--course-accent); font-weight: 600; }
+
+/* =============================================================
+   Code blocks — theme-matched, quiet border
+   ============================================================= */
+.md-typeset pre > code {
+  border: 1px solid var(--course-border);
+  border-radius: 12px;
+  line-height: 1.65;
+}
+.md-typeset code { border-radius: 4px; }
+
+/* =============================================================
+   Admonitions — flat surface, colored left rule (no icon soup)
+   ============================================================= */
+.md-typeset .admonition, .md-typeset details {
+  background: var(--course-surface);
+  border: 1px solid var(--course-border);
+  border-left-width: 3px;
+  border-radius: 12px;
   box-shadow: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--course-line) 70%, transparent);
+  font-size: inherit;
 }
-
-.md-header__title,
-.md-tabs__link,
-.md-nav,
-.md-search__input {
-  letter-spacing: 0.01em;
-}
-
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3 {
-  color: var(--course-ink);
-  font-family: var(--course-serif);
-  letter-spacing: -0.02em;
-}
-
-.md-typeset h1 {
-  font-weight: 650;
-}
-
-.md-typeset h2 {
-  margin-top: 2.2em;
-}
-
-.md-typeset code,
-.md-typeset pre {
-  border-radius: var(--course-radius);
-}
-
-.md-typeset pre {
-  border: 1px solid color-mix(in srgb, var(--course-line) 75%, transparent);
-}
-
-.md-typeset .admonition,
-.md-typeset details {
-  border-radius: var(--course-radius);
-  box-shadow: none;
-}
-
-.course-home {
-  margin-top: -0.8rem;
-}
-
-.course-hero {
-  display: grid;
-  min-height: calc(100svh - 6.6rem);
-  align-items: center;
-  gap: 2.5rem;
-  padding: clamp(2.5rem, 7vw, 6rem) 0;
-}
-
-.course-hero__copy {
-  max-width: 43rem;
-}
-
-.course-eyebrow {
-  margin: 0 0 1.2rem;
-  color: var(--course-teal);
-  font-family: var(--md-code-font-family);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+.md-typeset .admonition-title, .md-typeset summary {
+  background: transparent;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  font-size: 0.62rem;
+}
+.md-typeset .admonition.note, .md-typeset details.note { border-left-color: var(--course-link); }
+.md-typeset .note > .admonition-title { color: var(--course-link); }
+.md-typeset .admonition.tip, .md-typeset .admonition.success { border-left-color: var(--course-h3); }
+.md-typeset .tip > .admonition-title, .md-typeset .success > .admonition-title { color: var(--course-h3); }
+.md-typeset .admonition.warning, .md-typeset .admonition.caution { border-left-color: var(--course-h2); }
+.md-typeset .warning > .admonition-title, .md-typeset .caution > .admonition-title { color: var(--course-h2); }
+
+/* "Predict before running" admonition — the reasoning-loop prompt.
+   Usage: !!! question "Predict before running" */
+.md-typeset .admonition.question {
+  background: var(--course-accent-soft);
+  border: 1px dashed var(--course-accent);
+  border-radius: 12px;
+}
+.md-typeset .question > .admonition-title {
+  color: var(--course-accent);
+  font-family: var(--md-code-font-family, monospace);
 }
 
-[data-md-color-scheme="comphy-dark"] .course-eyebrow {
-  color: #68c5bf;
+/* =============================================================
+   Course landing components (used by docs/index.md)
+   ============================================================= */
+.course-eyebrow {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--course-h1);
 }
-
-.course-hero h1 {
-  max-width: 13ch;
-  margin: 0;
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  font-weight: 650;
-  line-height: 0.95;
-  text-wrap: balance;
-}
-
-.course-hero__lede {
-  max-width: 40rem;
-  margin: 1.6rem 0 0;
-  color: var(--course-muted);
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1.55;
-}
-
-.course-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 2rem;
-}
+.course-hero__lede { font-size: 0.9rem; line-height: 1.55; max-width: 34em; }
 
 .course-button {
   display: inline-flex;
-  min-height: 2.8rem;
   align-items: center;
-  justify-content: center;
-  border: 1px solid var(--course-ink);
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--course-border-strong);
   border-radius: 999px;
-  padding: 0.65rem 1.2rem;
-  color: var(--course-ink) !important;
-  font-weight: 700;
-  transition:
-    transform 350ms ease,
-    background-color 350ms ease,
-    color 350ms ease;
-}
-
-.course-button--primary {
-  border-color: var(--course-teal);
-  background: var(--course-teal);
-  color: #fff !important;
-}
-
-.course-button:hover,
-.course-button:focus-visible {
-  transform: translateY(-2px);
-  background: var(--course-ink);
-  color: var(--course-paper) !important;
-}
-
-.course-loop {
-  width: min(100%, 43rem);
   color: var(--course-ink);
-  filter: drop-shadow(0 25px 35px rgb(19 32 31 / 9%));
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-decoration: none;
+  transition: all 160ms cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-
-.course-loop__path {
-  animation: course-draw 1.7s 450ms ease both;
-  stroke-dasharray: 920;
-  stroke-dashoffset: 920;
-}
-
-.course-loop__node {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: course-node 500ms ease forwards;
-}
-
-.course-loop__node:nth-of-type(1) { animation-delay: 800ms; }
-.course-loop__node:nth-of-type(2) { animation-delay: 950ms; }
-.course-loop__node:nth-of-type(3) { animation-delay: 1100ms; }
-.course-loop__node:nth-of-type(4) { animation-delay: 1250ms; }
-.course-loop__node:nth-of-type(5) { animation-delay: 1400ms; }
-
-.course-hero__copy > * {
-  animation: course-rise 650ms ease both;
-}
-
-.course-hero__copy > :nth-child(2) { animation-delay: 90ms; }
-.course-hero__copy > :nth-child(3) { animation-delay: 180ms; }
-.course-hero__copy > :nth-child(4) { animation-delay: 270ms; }
-
-.course-section {
-  padding: clamp(3.5rem, 8vw, 7rem) 0;
-  border-top: 1px solid var(--course-line);
-}
-
-.course-section__head {
-  display: grid;
-  gap: 1rem;
-  margin-bottom: 2.4rem;
-}
-
-.course-section__head h2 {
-  max-width: 16ch;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.05;
-}
-
-.course-section__head p {
-  max-width: 48rem;
-  color: var(--course-muted);
-  font-size: 1.05rem;
-}
-
-.course-routes {
-  display: grid;
-  gap: 1rem;
-}
+.course-button:hover { border-color: var(--course-accent); background: var(--course-accent-soft); color: var(--course-accent); }
+.course-button--primary { background: var(--course-accent); border-color: var(--course-accent); color: var(--course-accent-fg); }
+.course-button--primary:hover { background: var(--course-accent-hover); color: var(--course-accent-fg); }
 
 .course-route {
-  display: grid;
-  gap: 0.9rem;
-  border-top: 3px solid var(--course-teal);
-  padding: 1.4rem 0;
+  background: var(--course-surface);
+  border: 1px solid var(--course-border);
+  border-radius: 18px;
+  padding: 24px;
 }
-
-.course-route:nth-child(2) {
-  border-top-color: var(--course-blue);
-}
-
-.course-route h3 {
-  margin: 0;
-  font-size: 1.55rem;
-}
-
 .course-route__time {
-  color: var(--course-coral);
-  font-family: var(--md-code-font-family);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-family: var(--md-code-font-family, monospace);
+  font-size: 0.62rem;
+  color: var(--course-accent);
 }
-
-.course-route p {
-  margin: 0;
-  color: var(--course-muted);
-}
-
-.course-curriculum {
-  border-top: 1px solid var(--course-line);
-}
+.course-route h3 { margin-top: 0.3em; }
 
 .course-lesson {
   display: grid;
-  gap: 0.5rem 1.4rem;
+  grid-template-columns: 44px 1fr auto;
   align-items: baseline;
-  border-bottom: 1px solid var(--course-line);
-  padding: 1.1rem 0;
-  transition:
-    padding 350ms ease,
-    background-color 350ms ease;
+  gap: 16px;
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--course-border);
+  border-radius: 6px;
+  transition: background 160ms;
 }
-
-.course-lesson:hover,
-.course-lesson:focus-within {
-  padding-right: 1rem;
-  padding-left: 1rem;
-  background: color-mix(in srgb, var(--course-teal) 6%, transparent);
-}
-
+.course-lesson:hover { background: var(--course-accent-soft); }
 .course-lesson__number {
-  color: var(--course-coral);
-  font-family: var(--md-code-font-family);
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-family: var(--md-code-font-family, monospace);
+  font-weight: 600;
+  color: var(--course-accent);
 }
-
-.course-lesson a {
-  color: var(--course-ink);
-  font-family: var(--course-serif);
-  font-size: 1.18rem;
-  font-weight: 650;
-}
-
 .course-lesson__output {
-  color: var(--course-muted);
-  font-size: 0.86rem;
+  font-family: var(--md-code-font-family, monospace);
+  font-size: 0.62rem;
+  color: var(--course-ink-muted);
+  text-align: right;
 }
 
+/* Reasoning-loop chips (question → represent → transform → verify → evidence) */
+.loop { display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+        font-family: var(--md-code-font-family, monospace); font-size: 0.66rem; }
+.loop-stage { padding: 5px 12px; border-radius: 999px; color: #fff; font-weight: 500; }
+.loop-stage--question  { background: #0b5d5b; }
+.loop-stage--represent { background: #2f6f9f; }
+.loop-stage--transform { background: #0b5d5b; }
+.loop-stage--verify    { background: #cf4900; }
+.loop-stage--evidence  { background: #68236d; }
+.loop-arrow { color: var(--course-ink-muted); user-select: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .course-button, .course-lesson { transition: none; }
+}
+
+/* =============================================================
+   Site layout — comphy-python101
+   Composed from the design system's course-landing and
+   course-lesson templates; everything below references the
+   tokens defined above.
+   ============================================================= */
+
+/* Material palette vars the schemes above do not set.
+   The overrides below the palette blocks correct Material 9.x
+   integration and contrast defects found in review; the drop-in
+   section above stays verbatim so it diffs cleanly against the
+   design project. */
+[data-md-color-scheme="comphy-light"] {
+  color-scheme: light;
+  --md-primary-fg-color--light: #4b86b3;
+  --md-primary-fg-color--dark: #255a83;
+  --md-accent-fg-color--transparent: var(--course-accent-soft);
+  --md-default-fg-color--lightest: rgba(15, 12, 8, 0.07);
+  --md-typeset-table-color: var(--course-border-strong);
+  --md-typeset-table-color--light: rgba(15, 12, 8, 0.035);
+  /* Material 9.x: base hl var is the 2px inset bar, --light the row wash */
+  --md-code-hl-color: #2f6f9f;
+  --md-code-hl-color--light: rgba(47, 111, 159, 0.12);
+  /* AA (>= 4.5:1) on the light code background */
+  --md-code-hl-comment-color: #6f6759;
+  --md-code-hl-constant-color: #5d3bc4;
+  --md-code-hl-special-color: #a80f43;
+}
+[data-md-color-scheme="comphy-dark"] {
+  color-scheme: dark;
+  --md-primary-fg-color--light: #8ebcdf;
+  --md-primary-fg-color--dark: #4d80a8;
+  --md-primary-bg-color: var(--course-accent-fg);
+  --md-accent-fg-color--transparent: var(--course-accent-soft);
+  --md-default-fg-color--lightest: rgba(216, 222, 238, 0.07);
+  --md-typeset-table-color: var(--course-border-strong);
+  --md-typeset-table-color--light: rgba(216, 222, 238, 0.05);
+  --md-typeset-mark-color: rgba(107, 163, 205, 0.30);
+  --md-code-hl-color: #6ba3cd;
+  --md-code-hl-color--light: rgba(107, 163, 205, 0.16);
+  /* AA (>= 4.5:1) on the dark code background */
+  --md-code-hl-comment-color: #8791ad;
+  --md-code-hl-constant-color: #a988e2;
+  --md-code-hl-special-color: #e08bb0;
+}
+
+/* Active top-nav tab (Material marks the parent li, not the link) */
+.md-tabs__item--active .md-tabs__link { color: var(--course-accent); }
+
+/* Search field: keep the surface fill on hover, recolor the magnifier */
+.md-search__form:hover { background-color: var(--course-accent-soft); }
+.md-search__form .md-search__icon { color: var(--course-ink-muted); }
+
+/* Typed admonitions: Material's per-type rules outrank the generic
+   reskin above, leaving vivid default borders on three sides */
+.md-typeset .admonition.note, .md-typeset details.note,
+.md-typeset .admonition.tip, .md-typeset details.tip,
+.md-typeset .admonition.success, .md-typeset details.success,
+.md-typeset .admonition.warning, .md-typeset details.warning,
+.md-typeset .admonition.caution, .md-typeset details.caution {
+  border-color: var(--course-border);
+}
+.md-typeset .admonition.note, .md-typeset details.note { border-left-color: var(--course-link); }
+.md-typeset .admonition.tip, .md-typeset details.tip,
+.md-typeset .admonition.success, .md-typeset details.success { border-left-color: var(--course-h3); }
+.md-typeset .admonition.warning, .md-typeset details.warning,
+.md-typeset .admonition.caution, .md-typeset details.caution { border-left-color: var(--course-h2); }
+.md-typeset .admonition.question, .md-typeset details.question { border-color: var(--course-accent); }
+.md-typeset .note > .admonition-title::before, .md-typeset .note > summary::before { background-color: var(--course-link); }
+.md-typeset .tip > .admonition-title::before, .md-typeset .tip > summary::before,
+.md-typeset .success > .admonition-title::before, .md-typeset .success > summary::before { background-color: var(--course-h3); }
+.md-typeset .warning > .admonition-title::before, .md-typeset .warning > summary::before,
+.md-typeset .caution > .admonition-title::before, .md-typeset .caution > summary::before { background-color: var(--course-h2); }
+.md-typeset .question > .admonition-title::before, .md-typeset .question > summary::before { background-color: var(--course-accent); }
+.md-typeset .question > .admonition-title { color: var(--course-accent-hover); }
+
+/* Footer inherits the course ink instead of Material's white-on-dark */
+.md-footer {
+  --md-footer-bg-color: transparent;
+  --md-footer-bg-color--dark: transparent;
+  --md-footer-fg-color: var(--course-ink-strong);
+  --md-footer-fg-color--light: var(--course-ink-muted);
+  --md-footer-fg-color--lighter: var(--course-ink-muted);
+}
+
+/* Landing links inside components keep their component colors.
+   :focus is covered alongside :hover because Material's
+   `.md-typeset a:focus` otherwise recolors button labels. */
+.md-typeset .course-button { color: var(--course-ink); }
+.md-typeset .course-button:hover,
+.md-typeset .course-button:focus { color: var(--course-accent-hover); }
+.md-typeset .course-button--primary { color: var(--course-accent-fg); }
+.md-typeset .course-button--primary:hover,
+.md-typeset .course-button--primary:focus {
+  background: var(--course-accent-hover);
+  color: var(--course-accent-fg);
+}
+
+/* Curriculum rows are full-row anchors (design template: .lesson-row) */
+.md-typeset a.course-lesson,
+.md-typeset a.course-lesson:hover,
+.md-typeset a.course-lesson:focus {
+  color: var(--course-ink-strong);
+  text-decoration: none;
+}
+.course-lesson__title { font-weight: 600; }
+.md-typeset a.course-lesson:hover .course-lesson__title,
+.md-typeset a.course-lesson:focus .course-lesson__title,
+.md-typeset a.course-lesson:hover .course-lesson__number,
+.md-typeset a.course-lesson:focus .course-lesson__number { color: var(--course-accent-hover); }
+
+/* Hero */
+.course-home { margin-top: -0.8rem; }
+.course-hero {
+  max-width: 41rem;
+  padding: 3.4rem 0 2.6rem;
+}
+.course-hero .course-eyebrow { display: block; margin: 0 0 0.6rem; }
+.md-typeset .course-hero h1 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(2rem, 5.4vw, 3.2rem);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+.course-hero__lede { margin: 0 0 1.3rem; color: var(--course-ink-muted); }
+.course-hero .loop { margin: 0 0 1.6rem; }
+
+.course-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+/* Sections */
+.course-section { padding: 2rem 0 1rem; }
+.course-section__head { margin-bottom: 1.2rem; }
+.course-section__head .course-eyebrow { display: block; margin: 0 0 0.4rem; }
+.md-typeset .course-section__head h2 {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  border: 0;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  line-height: 1.15;
+}
+.course-section__head p {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--course-ink-muted);
+}
+
+/* Routes */
+.course-routes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+.md-typeset .course-route h3 { margin-bottom: 0.4rem; }
+.course-route p { margin: 0 0 0.7rem; color: var(--course-ink-muted); }
+
+/* Manifesto */
 .course-manifesto {
   display: grid;
-  gap: 1.2rem;
+  gap: 1.1rem;
   counter-reset: principle;
 }
-
+@media (min-width: 48em) {
+  .course-manifesto { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .course-principle {
   position: relative;
-  padding-left: 3.4rem;
+  padding-left: 2.6rem;
   counter-increment: principle;
 }
-
 .course-principle::before {
   position: absolute;
-  top: 0;
+  top: 0.15em;
   left: 0;
-  color: var(--course-coral);
+  color: var(--course-accent);
   content: "0" counter(principle);
-  font-family: var(--md-code-font-family);
-  font-weight: 700;
+  font-family: var(--md-code-font-family, monospace);
+  font-weight: 600;
 }
-
-.course-principle strong {
+.md-typeset .course-principle strong {
   display: block;
-  margin-bottom: 0.25rem;
-  color: var(--course-ink);
-  font-family: var(--course-serif);
-  font-size: 1.18rem;
+  margin-bottom: 0.15rem;
+  color: var(--course-ink-strong);
 }
+.course-principle span { color: var(--course-ink-muted); }
 
+/* Final call to action — a design-system panel (28 px radius) */
 .course-final {
-  display: grid;
-  gap: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  border: 1px solid var(--course-line);
-  border-radius: var(--course-radius);
-  padding: clamp(1.5rem, 5vw, 3.5rem);
-  background:
-    radial-gradient(circle at 92% 12%, rgb(228 93 63 / 14%), transparent 26%),
-    color-mix(in srgb, var(--course-paper-deep) 78%, transparent);
-  box-shadow: var(--course-shadow);
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 1.4rem;
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+  background: var(--course-surface);
+  border: 1px solid var(--course-border);
+  border-radius: 28px;
 }
-
-.course-final h2 {
+.course-final .course-eyebrow { display: block; margin: 0 0 0.4rem; }
+.md-typeset .course-final h2 {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  line-height: 1.2;
 }
 
+/* Lesson contract — Decision / Output block at the top of lessons */
 .lesson-contract {
   display: grid;
-  gap: 0.65rem;
-  margin: 1.5rem 0 2rem;
-  border-left: 4px solid var(--course-coral);
-  padding: 1rem 1.2rem;
-  background: color-mix(in srgb, var(--course-coral) 6%, transparent);
+  gap: 0.4rem;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--course-surface);
+  border: 1px solid var(--course-border);
+  border-left: 3px solid var(--course-accent);
+  border-radius: 12px;
+}
+.lesson-contract p { margin: 0; }
+.md-typeset .lesson-contract strong {
+  color: var(--course-accent);
+  font-family: var(--md-code-font-family, monospace);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.lesson-contract p {
-  margin: 0;
-}
-
-@media (min-width: 48rem) {
-  .course-hero {
-    grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.95fr);
-  }
-
-  .course-routes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.4rem;
-  }
-
-  .course-lesson {
-    grid-template-columns: 3rem minmax(12rem, 1fr) minmax(11rem, 0.7fr);
-  }
-
-  .course-manifesto {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .course-final {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-}
-
-@keyframes course-rise {
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes course-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes course-node {
-  from {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .course-hero__copy > *,
-  .course-loop__node,
-  .course-loop__path {
-    opacity: 1;
-    animation: none;
-    stroke-dashoffset: 0;
-    transform: none;
-  }
-
-  .course-button,
-  .course-lesson {
-    transition: none;
-  }
+/* Small screens: let lesson outputs wrap under the title */
+@media (max-width: 37.5em) {
+  .course-lesson { grid-template-columns: 44px 1fr; }
+  .course-lesson__output { grid-column: 2; text-align: left; }
 }
