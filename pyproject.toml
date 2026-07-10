@@ -50,6 +50,7 @@ Issues = "https://github.com/comphy-lab/comphy-python101/issues"
 
 [tool.uv]
 required-version = "==0.10.12"
+exclude-newer = "7 days"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/comphy_python101"]
