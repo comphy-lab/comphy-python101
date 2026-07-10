@@ -10,6 +10,7 @@ copyright: >-
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
   logo: assets/comphy-python101-mark.svg
   favicon: assets/comphy-python101-mark.svg

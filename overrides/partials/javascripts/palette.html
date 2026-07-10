@@ -1,0 +1,40 @@
+{#-
+  Overrides the Material partial of the same name.
+
+  `base.html` hardcodes the first palette entry onto <body>, and upstream's
+  copy of this script only corrects that when a scheme is already stored in
+  localStorage. A first-time visitor whose system prefers dark therefore gets
+  the light scheme painted, then flipped once bundle.js runs at the end of
+  <body>. Resolve the media query here, while the parser is still blocked and
+  nothing has painted.
+
+  Deliberately does not persist the resolved scheme: writing it would pin the
+  site to whichever mode the visitor first arrived in.
+-#}
+<script>
+  (() => {
+    let palette = __md_get("__palette")
+    if (!(palette && palette.color)) {
+      const option = [...document.querySelectorAll("[data-md-color-media]")]
+        .find(el => matchMedia(el.getAttribute("data-md-color-media")).matches)
+      if (option)
+        palette = { color: { media: option.getAttribute("data-md-color-media") } }
+    }
+    if (!(palette && palette.color))
+      return
+    if (palette.color.media === "(prefers-color-scheme)") {
+      const light = matchMedia("(prefers-color-scheme: light)").matches
+      palette.color.media = light
+        ? "(prefers-color-scheme: light)"
+        : "(prefers-color-scheme: dark)"
+    }
+    const option = document.querySelector(
+      `[data-md-color-media='${palette.color.media}']`
+    )
+    if (option)
+      for (const key of ["media", "scheme", "primary", "accent"])
+        palette.color[key] = option.getAttribute(`data-md-color-${key}`)
+    for (const [key, value] of Object.entries(palette.color))
+      document.body.setAttribute(`data-md-color-${key}`, value)
+  })()
+</script>

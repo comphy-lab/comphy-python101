@@ -132,9 +132,7 @@
 .md-search__form { background: var(--course-surface); border: 1px solid var(--course-border); }
 .md-search__input { color: var(--course-ink); }
 .md-search__input::placeholder { color: var(--course-ink-muted); }
-.md-header__button.md-icon,
-.md-search__icon[for="__search"] { padding: 0.5rem; }
-.md-search__icon[for="__search"] { width: 44px; height: 44px; }
+.md-header__button.md-icon { padding: 0.5rem; }
 .md-footer { background: var(--course-code-bg); color: var(--course-ink); }
 .md-footer-meta { background: transparent; }
 
@@ -322,6 +320,28 @@
 /* Search field: keep the surface fill on hover, recolor the magnifier */
 .md-search__form:hover { background-color: var(--course-accent-soft); }
 .md-search__form .md-search__icon { color: var(--course-ink-muted); }
+
+/* The in-field control is decorative on desktop and the back arrow on narrow
+   screens. Material offsets it from the top by a fixed amount that assumes a
+   borderless field; the 1px border above shifts its containing block, so
+   centre it instead. Grow the 44px tap target outwards rather than resizing
+   the box, which would push the glyph out of the field. */
+.md-search__icon[for="__search"] {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.md-search__icon[for="__search"]::after {
+  position: absolute;
+  content: "";
+  inset: -10px;
+}
+
+/* Copy-to-clipboard button. Material tints it with the `--lightest` ink,
+   which is 7% alpha here and vanishes against either code background. */
+.md-clipboard { color: var(--course-ink-muted); }
+:hover > .md-clipboard { color: var(--course-ink-strong); }
+.md-clipboard:focus,
+.md-clipboard:hover { color: var(--course-accent-hover); }
 
 /* Typed admonitions: Material's per-type rules outrank the generic
    reskin above, leaving vivid default borders on three sides */
