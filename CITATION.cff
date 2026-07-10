@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If this course helps your teaching or research, please cite it."
+title: "CoMPhy Python 101"
+type: software
+authors:
+  - family-names: Sanjay
+    given-names: Vatsal
+    affiliation: CoMPhy Lab, Durham University
+repository-code: "https://github.com/comphy-lab/comphy-python101"
+url: "https://comphy-lab.org/comphy-python101/"
+license: BSD-3-Clause
+version: 0.1.0
+date-released: 2026-07-10
+keywords:
+  - Python
+  - scientific computing
+  - fluid mechanics
+  - reproducible research

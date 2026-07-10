@@ -1,0 +1,37 @@
+name: Exercise idea
+description: Propose a compact, public scientific-computing exercise.
+title: "[Exercise]: "
+labels: ["exercise"]
+body:
+  - type: input
+    id: question
+    attributes:
+      label: Scientific question
+      placeholder: What can the learner decide after completing this?
+    validations:
+      required: true
+  - type: dropdown
+    id: step
+    attributes:
+      label: Main reasoning step
+      options:
+        - Question
+        - Representation
+        - Transformation
+        - Verification
+        - Evidence
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data and provenance
+      description: Use only synthetic or clearly public data.
+    validations:
+      required: true
+  - type: textarea
+    id: check
+    attributes:
+      label: What should the automated check establish?
+    validations:
+      required: true

@@ -1,0 +1,24 @@
+name: Content correction
+description: Report an error, ambiguity, broken link, or inaccessible explanation.
+title: "[Content]: "
+labels: ["content"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or file
+      placeholder: docs/core/03-arrays.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Include the equation, code, link, or wording involved.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction
+      description: Optional, but concrete alternatives are useful.

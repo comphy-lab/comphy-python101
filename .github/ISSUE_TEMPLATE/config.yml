@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Course website
+    url: https://comphy-lab.org/comphy-python101/
+    about: Read the current course before filing a question.

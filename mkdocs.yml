@@ -1,0 +1,109 @@
+site_name: CoMPhy Python 101
+site_description: Learn to reason with Python for scientific computing.
+site_author: Vatsal Sanjay and CoMPhy Lab contributors
+site_url: https://comphy-lab.org/comphy-python101/
+repo_url: https://github.com/comphy-lab/comphy-python101
+repo_name: comphy-lab/comphy-python101
+edit_uri: edit/main/docs/
+copyright: >-
+  Code BSD-3-Clause · Lessons and original teaching material CC BY 4.0
+
+theme:
+  name: material
+  language: en
+  logo: assets/comphy-python101-mark.svg
+  favicon: assets/comphy-python101-mark.svg
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: comphy-light
+      toggle:
+        icon: material/weather-night
+        name: Use dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: comphy-dark
+      toggle:
+        icon: material/weather-sunny
+        name: Use light mode
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.follow
+
+nav:
+  - Home: index.md
+  - Start here:
+      - Course overview: start/overview.md
+      - Set up once: start/setup.md
+      - How to learn here: start/how-to-learn.md
+  - Core:
+      - "01 · Think like a program": core/01-thinking.md
+      - "02 · Functions are claims": core/02-functions.md
+      - "03 · Arrays are the language": core/03-arrays.md
+      - "04 · Control and algorithms": core/04-control.md
+      - "05 · Debugging and tests": core/05-debugging.md
+      - "06 · Data has a schema": core/06-data.md
+      - "07 · Plots are arguments": core/07-plotting.md
+      - "08 · Numerical verification": core/08-numerics.md
+      - "09 · Analysis becomes a tool": core/09-tools.md
+      - "10 · Reproducible collaboration": core/10-reproducibility.md
+  - CoMPhy labs:
+      - "11 · Read a Basilisk log": comphy/11-basilisk-log.md
+      - "12 · Build a regime map": comphy/12-regime-map.md
+      - "13 · Reproduction capsule": comphy/13-capstone.md
+  - Reference:
+      - Syntax map: reference/syntax-map.md
+      - Command line and Git: reference/command-line-git.md
+      - Scientific Python taste: reference/taste.md
+  - About:
+      - For instructors: about/instructors.md
+      - Contributing: about/contributing.md
+      - Licences: about/licences.md
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path:
+        - .
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+validation:
+  absolute_links: warn
+  omitted_files: warn
+  unrecognized_links: warn
